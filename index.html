@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic Tint Studio | Midland, MI's Only Autobahn Performance Film Dealer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Barlow Condensed"', 'sans-serif'],
+            body: ['"Barlow"', 'sans-serif'],
+          },
+          colors: {
+            ink: '#07080A',
+            carbon: '#0D0F10',
+            panel: '#16181A',
+            rail: '#1F2123',
+            neon: '#39FF14',
+            'neon-lt': '#7CFF5C',
+            red: '#FF3B3F',
+            brandblue: '#4F46E5',
+            'brandblue-lt': '#7C79F0',
+            muted: '#6E7274',
+            'off-white': '#F1F3EF',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: "Barlow", sans-serif;
+      background-color: #07080A;
+      color: #F1F3EF;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .label {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .label.text-neon { color: #7CFF5C !important; }
+    .label.text-blue { color: #7C79F0 !important; }
+    .display {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+    }
+
+    .neon-text {
+      background: linear-gradient(-45deg, #39FF14, #7CFF5C, #39FF14, #7CFF5C);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .blue-text {
+      background: linear-gradient(-45deg, #4F46E5, #7C79F0, #4F46E5, #7C79F0);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .red-text { color: #FF3B3F; }
+
+    .neon-rule { height: 1px; background: linear-gradient(90deg, transparent 0%, #39FF14 50%, transparent 100%); }
+    .neon-rule-left { height: 1px; background: linear-gradient(90deg, #39FF14, transparent); }
+
+    .nav-glass {
+      background: rgba(7,8,10,0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(57,255,20,0.08);
+      transition: padding 0.3s ease;
+    }
+
+    .hero-img {
+      background-image: url('images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      background-color: #0D0F10;
+    }
+    @media (max-width: 767px) { .hero-img { background-position: 75% 40%; } }
+    .hero-vignette {
+      background: linear-gradient(to bottom, rgba(7,8,10,0.2) 0%, rgba(7,8,10,0.4) 30%, rgba(7,8,10,0.9) 74%, rgba(7,8,10,1) 100%);
+    }
+
+    .stat-strip { background: #0D0F10; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+    .marquee-track { display: flex; flex-wrap: nowrap; will-change: transform; }
+    .marquee-viewport {
+      overflow: hidden; width: 100%;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .stat-pill { display: flex; align-items: center; gap: 14px; padding: 0 48px; white-space: nowrap; }
+    .stat-pill-divider { width: 5px; height: 5px; border-radius: 50%; background: rgba(57,255,20,0.4); flex-shrink: 0; }
+    .stat-pill .display { text-shadow: 0 0 18px rgba(57,255,20,0.45); }
+    .stat-pill .display.text-brandblue { text-shadow: 0 0 18px rgba(79,70,229,0.5); }
+
+    /* Before/After slider */
+    .slider-wrap { position: relative; overflow: hidden; cursor: col-resize; user-select: none; -webkit-user-select: none; touch-action: pan-y; }
+    .slider-base { display: block; width: 100%; height: 460px; object-fit: cover; object-position: center; }
+    .slider-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    .slider-overlay img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    .slider-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: #39FF14; transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 12px rgba(57,255,20,0.5); }
+    .slider-circle {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 48px; height: 48px; background: #39FF14; border-radius: 50%; border: 3px solid #fff;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+    }
+    .slider-label {
+      position: absolute; top: 16px; font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 12px;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: none;
+    }
+    .slider-label-before { left: 16px; background: rgba(0,0,0,0.7); color: #ff7070; }
+    .slider-label-after { right: 16px; background: rgba(79,70,229,0.18); color: #7C79F0; border: 1px solid rgba(79,70,229,0.5); }
+    .slider-hint {
+      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+      font-family: "Barlow Condensed", sans-serif; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); white-space: nowrap; pointer-events: none; transition: opacity 0.5s ease;
+    }
+    .slider-wrap::after {
+      content: ''; position: absolute; bottom: 0; right: 0; width: 120px; height: 80px;
+      background: linear-gradient(315deg, rgba(7,8,10,1) 0%, rgba(7,8,10,0.9) 30%, rgba(7,8,10,0) 70%);
+      pointer-events: none; z-index: 8;
+    }
+
+    /* Double-bezel package cards */
+    .pkg-shell {
+      background: rgba(57,255,20,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1.75rem;
+      padding: 6px;
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.45s ease;
+    }
+    .pkg-shell:hover { transform: translateY(-8px); border-color: rgba(79,70,229,0.4); box-shadow: 0 30px 60px -18px rgba(0,0,0,0.7), 0 0 40px rgba(79,70,229,0.1); }
+    .pkg {
+      background: linear-gradient(160deg, rgba(22,24,25,0.94) 0%, rgba(10,11,12,0.99) 100%);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 1.5rem;
+      overflow: hidden;
+    }
+    .pkg-featured .pkg-shell { border-color: rgba(57,255,20,0.3); background: rgba(57,255,20,0.05); }
+    .pkg-featured-badge {
+      background: #39FF14; color: #07080A; font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 0; text-align: center; width: 100%;
+    }
+    .check::before { content: '✓'; color: #39FF14; margin-right: 10px; font-weight: 700; }
+
+    .addon {
+      background: rgba(15,16,17,0.96); border: 1px solid rgba(255,255,255,0.05); border-radius: 1.25rem; overflow: hidden;
+      transition: border-color 0.35s ease, transform 0.35s ease;
+    }
+    .addon:hover { border-color: rgba(79,70,229,0.35); transform: translateY(-5px); }
+
+    .step-num {
+      font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 6rem; line-height: 1;
+      color: rgba(57,255,20,0.1); position: absolute; top: 0; left: -4px; pointer-events: none;
+    }
+
+    .guarantee-wrap { background: linear-gradient(135deg, rgba(79,70,229,0.07) 0%, rgba(7,8,10,0) 60%); border: 1px solid rgba(79,70,229,0.18); }
+
+    .gallery-item { overflow: hidden; border-radius: 0.75rem; }
+    .gallery-item img { transition: transform 0.6s ease, filter 0.4s ease; filter: brightness(0.88); }
+    .gallery-item:hover img { transform: scale(1.06); filter: brightness(1); }
+
+    .cta-bg { background-image: url('images/cta-bg.jpg'); background-size: cover; background-position: center; background-color: #0D0F10; }
+    .cta-scrim { background: linear-gradient(100deg, rgba(7,8,10,0.97) 0%, rgba(7,8,10,0.88) 45%, rgba(7,8,10,0.6) 100%); }
+
+    .btn-neon {
+      display: inline-block;
+      background: linear-gradient(-45deg, #39FF14, #7CFF5C, #39FF14, #7CFF5C);
+      background-size: 400% 400%;
+      color: #07080A; font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 0.85rem;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 36px; border: none; cursor: pointer;
+      border-radius: 999px;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease;
+    }
+    .btn-neon:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 30px rgba(57,255,20,0.55), 0 12px 36px rgba(57,255,20,0.3); }
+    .btn-ghost {
+      display: inline-block; border: 1px solid rgba(57,255,20,0.4); color: #7CFF5C; font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 36px;
+      border-radius: 999px;
+      transition: border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+    }
+    .btn-ghost:hover { border-color: #39FF14; background: rgba(57,255,20,0.07); box-shadow: 0 0 22px rgba(57,255,20,0.25); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #07080A; }
+    ::-webkit-scrollbar-thumb { background: #24262A; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7C79F0; }
+
+    .review-card {
+      width: 300px; flex-shrink: 0; margin: 0 14px;
+      background: linear-gradient(160deg, rgba(22,24,25,0.94) 0%, rgba(10,11,12,0.99) 100%);
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 1.25rem; padding: 24px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .review-card:hover { border-color: rgba(57,255,20,0.35); box-shadow: 0 0 26px rgba(57,255,20,0.14); }
+    .review-stars { color: #39FF14; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 10px; }
+    .review-text { font-family: "Barlow", sans-serif; font-weight: 300; font-size: 0.88rem; color: rgba(241,243,239,0.78); line-height: 1.65; margin-bottom: 16px; }
+    .review-author { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #7C79F0; }
+    .review-source { font-family: "Barlow", sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.25); margin-top: 2px; }
+
+    footer a svg { transition: filter 0.25s ease; }
+    footer a:hover svg { filter: drop-shadow(0 0 7px rgba(79,70,229,0.85)); }
+    nav a:not([class*="btn"]):hover { text-shadow: 0 0 14px rgba(79,70,229,0.55); }
+
+    @media (max-width: 768px) {
+      #home > div[style*="linear-gradient"] {
+        background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.28) 55%, transparent 85%) !important;
+      }
+    }
+
+    #sticky-bar { display: flex; will-change: transform; }
+    @media (min-width: 768px) { #sticky-bar { display: none; } }
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      #sticky-bar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .neon-text, .btn-neon { animation: none !important; }
+    }
+
+    /* Only-dealer badge */
+    .exclusive-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,59,63,0.09); border: 1px solid rgba(255,59,63,0.35);
+      color: #FF6B6E; padding: 6px 16px; border-radius: 999px;
+      font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 0.68rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="fixed top-0 w-full z-50 nav-glass" id="nav">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-3 flex items-center justify-between" id="nav-inner">
+
+    <a href="#home" style="text-decoration:none; display:inline-flex; align-items:center;">
+      <img src="images/logo.png" alt="Strategic Tint Studio" class="h-16 md:h-28" style="width:auto; display:block;">
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm">
+      <a href="#packages" class="font-body font-500 text-muted hover:text-white transition-colors tracking-wide">Packages</a>
+      <a href="#proof"    class="font-body font-500 text-muted hover:text-white transition-colors tracking-wide">Results</a>
+      <a href="#guarantee" class="font-body font-500 text-muted hover:text-white transition-colors tracking-wide">Warranty</a>
+      <button type="button" onclick="openBooking()" class="btn-neon text-sm px-6 py-2.5">Get a Free Quote</button>
+    </div>
+
+    <button id="mob-btn" class="md:hidden text-white p-2 z-50 relative" aria-label="Menu">
+      <svg id="ic-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg id="ic-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div id="mob-menu" class="fixed inset-0 bg-ink/97 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-8
+     opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+  <a href="#packages" class="mob-link display text-5xl text-white">PACKAGES</a>
+  <a href="#proof"    class="mob-link display text-5xl text-white">RESULTS</a>
+  <a href="#guarantee" class="mob-link display text-5xl text-white">WARRANTY</a>
+  <button type="button" onclick="openBooking()" class="mob-link btn-neon mt-4 text-base px-14 py-4">Get a Free Quote</button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="home" class="relative w-full min-h-screen flex flex-col overflow-hidden hero-img">
+  <div class="absolute inset-0 hero-vignette"></div>
+  <div class="absolute inset-0 pointer-events-none"
+       style="background:linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.42) 48%, transparent 75%); z-index:1;"></div>
+
+  <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[130px] pointer-events-none" style="background:rgba(79,70,229,0.09);"></div>
+  <div class="absolute top-1/3 right-1/4 w-[300px] h-[300px] rounded-full blur-[110px] pointer-events-none" style="background:rgba(255,59,63,0.05);"></div>
+
+  <div class="flex-1" style="min-height:6rem;"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full pb-4 md:pb-6">
+    <div class="flex items-center gap-3 mb-6 flex-wrap">
+      <span class="exclusive-badge">★ Mid-Michigan's Only Autobahn Dealer</span>
+    </div>
+
+    <h1 class="display text-white mb-8" style="font-size: clamp(2.4rem, 6.6vw, 6.2rem);">
+      YOUR LAST TINT JOB<br>
+      <span class="neon-text">BUBBLED &amp; FADED.</span><br>
+      THIS ONE WON'T.
+    </h1>
+
+    <p class="font-body font-300 text-off-white/80 text-xl md:text-2xl max-w-xl mb-8 leading-loose">
+      Bill is the only authorized Autobahn Performance Film installer in Mid-Michigan — and backs every job with a lifetime warranty against fading, bubbling, and adhesive failure. Downtown Midland, MI.
+    </p>
+
+    <div class="flex items-center gap-3 mb-9" style="flex-wrap:wrap;">
+      <div style="color:#F59E0B; font-size:1rem; letter-spacing:0.05em;">★★★★★</div>
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.78);">
+        5.0 &nbsp;&middot;&nbsp; 114 Google Reviews
+      </div>
+      <div style="font-family:'Barlow',sans-serif; font-weight:300; font-size:0.72rem; color:rgba(255,255,255,0.35); letter-spacing:0.06em;">
+        Downtown Midland, MI
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row flex-wrap gap-4">
+      <button type="button" onclick="openBooking()" class="btn-neon w-full sm:w-auto text-center">Get a Free Quote</button>
+      <a href="#proof" class="w-full sm:w-auto text-center"
+         style="display:inline-block; border:1px solid rgba(79,70,229,0.5); color:#7C79F0; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.12em; text-transform:uppercase; padding:14px 36px; border-radius:999px; transition:border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s ease; text-decoration:none;"
+         onmouseover="this.style.borderColor='#4F46E5'; this.style.background='rgba(79,70,229,0.09)'; this.style.boxShadow='0 0 22px rgba(79,70,229,0.3)'"
+         onmouseout="this.style.borderColor='rgba(79,70,229,0.5)'; this.style.background='transparent'; this.style.boxShadow='none'">See Before &amp; Afters</a>
+    </div>
+  </div>
+
+  <div class="stat-strip w-full py-7" style="flex-shrink:0; position:relative; z-index:10;">
+  <div class="marquee-viewport">
+    <div class="marquee-track" id="marquee-stats">
+
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">5.0 ★</div><div class="label text-muted" style="font-size:0.62rem;">Google Rating &middot; 114 Reviews</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-neon">ONLY DEALER</div><div class="label text-muted" style="font-size:0.62rem;">Autobahn Performance Films &middot; Mid-Michigan</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">LIFETIME</div><div class="label text-muted" style="font-size:0.62rem;">Warranty on Every Install</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-neon">WE COME TO YOU</div><div class="label text-muted" style="font-size:0.62rem;">Mobile Pickup &amp; Drop-Off</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">AUTO &middot; TRUCK &middot; UTV</div><div class="label text-muted" style="font-size:0.62rem;">Cars, Trucks, SUVs, Off-Road &amp; More</div><div class="stat-pill-divider"></div></div>
+
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">5.0 ★</div><div class="label text-muted" style="font-size:0.62rem;">Google Rating &middot; 114 Reviews</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-neon">ONLY DEALER</div><div class="label text-muted" style="font-size:0.62rem;">Autobahn Performance Films &middot; Mid-Michigan</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">LIFETIME</div><div class="label text-muted" style="font-size:0.62rem;">Warranty on Every Install</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-neon">WE COME TO YOU</div><div class="label text-muted" style="font-size:0.62rem;">Mobile Pickup &amp; Drop-Off</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">AUTO &middot; TRUCK &middot; UTV</div><div class="label text-muted" style="font-size:0.62rem;">Cars, Trucks, SUVs, Off-Road &amp; More</div><div class="stat-pill-divider"></div></div>
+
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PROOF — BEFORE / AFTER
+══════════════════════════════════════ -->
+<section id="proof" class="w-full py-24 md:py-32 px-4 bg-ink scroll-mt-20">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-14 reveal">
+      <div class="label text-neon mb-3">Results Don't Lie</div>
+      <h2 class="display text-white" style="font-size: clamp(2.6rem, 6.6vw, 5.6rem);">
+        FACTORY GLASS.<br><span class="blue-text">NOT AFTERMARKET-LOOKING.</span>
+      </h2>
+      <p class="font-body font-300 text-muted mt-5 max-w-lg mx-auto text-lg leading-relaxed">
+        Real customer words: "It 100% looks like factory tinted glass — you can't even see the edges or trim points." That's the Bill difference.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto reveal">
+      <div class="slider-wrap" id="ba-wrap">
+        <img src="images/after-tint.jpg" alt="Vehicle after professional Autobahn window tint installation"
+             class="slider-base" id="ba-before-img" style="object-position: 55% top;">
+        <div class="slider-overlay" id="ba-overlay">
+          <img src="images/before-tint.jpg" alt="Vehicle windows before tint — bare glass"
+               id="ba-after-img" style="object-position: 55% top;">
+        </div>
+        <div class="slider-handle" id="ba-handle">
+          <div class="slider-circle">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+              <path d="M5 1L1 7L5 13" stroke="#07080A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13 1L17 7L13 13" stroke="#07080A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="slider-label slider-label-before">BEFORE</div>
+        <div class="slider-label slider-label-after">AFTER</div>
+        <div class="slider-hint" id="ba-hint">← DRAG TO COMPARE →</div>
+      </div>
+      <p class="font-body text-xs text-muted text-center mt-3">
+        Real client vehicle · Autobahn Performance Film · Midland, MI
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px mt-14 reveal" style="background:rgba(255,255,255,0.04);">
+      <div class="bg-ink p-8 text-center">
+        <div class="label text-neon mb-3">Exclusive Access</div>
+        <div class="display text-white text-2xl mb-3">AUTOBAHN PERFORMANCE FILM</div>
+        <p class="font-body font-300 text-muted text-sm leading-relaxed">
+          Bill is the only authorized Autobahn dealer in Mid-Michigan. This film isn't sold at every shop on the block.
+        </p>
+      </div>
+      <div class="bg-ink p-8 text-center" style="border-left:1px solid rgba(255,255,255,0.04); border-right:1px solid rgba(255,255,255,0.04);">
+        <div class="label text-blue mb-3">Precision Install</div>
+        <div class="display text-white text-2xl mb-3">FACTORY-CLEAN EDGES</div>
+        <p class="font-body font-300 text-muted text-sm leading-relaxed">
+          No visible trim lines, no bubbling at the corners. Most vehicles are done in under 3 hours.
+        </p>
+      </div>
+      <div class="bg-ink p-8 text-center">
+        <div class="label text-neon mb-3">Your Choice</div>
+        <div class="display text-white text-2xl mb-3">IN-SHOP OR MOBILE</div>
+        <p class="font-body font-300 text-muted text-sm leading-relaxed">
+          Drop off downtown Midland, or Bill comes to your home or office within the city — your call.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PACKAGES — NO PRICING, VEHICLE-STYLE VISUALS
+══════════════════════════════════════ -->
+<section id="packages" class="w-full py-24 md:py-32 px-4 bg-carbon scroll-mt-20" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <div class="label text-neon mb-3">Built For Your Vehicle</div>
+      <h2 class="display text-white" style="font-size: clamp(2.6rem, 6.6vw, 5.6rem);">
+        EVERY VEHICLE.<br><span class="neon-text">ITS OWN PACKAGE.</span>
+      </h2>
+      <p class="font-body font-300 text-muted mt-5 max-w-lg mx-auto text-lg leading-relaxed">
+        No two vehicles tint the same. Tell Bill what you drive — he'll build the right coverage and shade for it. Every package includes the same lifetime warranty.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Package 1: Daily Driver -->
+      <div class="pkg-shell flex flex-col reveal">
+        <div class="pkg flex flex-col flex-1">
+          <div class="overflow-hidden" style="height:200px;">
+            <img src="images/pkg-daily-driver.jpg" alt="Sedan and coupe window tint package"
+                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <div class="label text-muted mb-2">Sedans &amp; Coupes</div>
+            <h3 class="display text-white text-2xl mb-3">THE DAILY DRIVER</h3>
+            <p class="font-body font-300 text-muted text-sm leading-relaxed mb-5 flex-1">
+              Heat, glare, and UV cut down on your everyday car — front two windows or full vehicle coverage.
+            </p>
+            <ul class="space-y-2 mb-6 font-body text-xs text-off-white/80">
+              <li class="check">Front 2 or full-vehicle coverage</li>
+              <li class="check">Choose your shade with Bill</li>
+              <li class="check">Lifetime warranty included</li>
+            </ul>
+            <button type="button" onclick="openBooking('Daily Driver — Sedan/Coupe')" class="btn-ghost block text-center w-full mt-auto">GET MY QUOTE</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Package 2: Truck & SUV -->
+      <div class="pkg-shell flex flex-col reveal pkg-featured" style="transition-delay:0.1s;">
+        <div class="pkg-featured-badge">MOST REQUESTED</div>
+        <div class="pkg flex flex-col flex-1">
+          <div class="overflow-hidden" style="height:200px;">
+            <img src="images/pkg-truck-suv.jpg" alt="Truck and SUV window tint package"
+                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <div class="label text-muted mb-2">Trucks, SUVs &amp; Vans</div>
+            <h3 class="display text-white text-2xl mb-3">TRUCK &amp; SUV PACKAGE</h3>
+            <p class="font-body font-300 text-muted text-sm leading-relaxed mb-5 flex-1">
+              More glass, more heat. Full coverage built for bigger cabins — the package Bill installs most.
+            </p>
+            <ul class="space-y-2 mb-6 font-body text-xs text-off-white/80">
+              <li class="check">Full-vehicle coverage, rear included</li>
+              <li class="check">Add visor tint for the drive home sun</li>
+              <li class="check">Lifetime warranty included</li>
+            </ul>
+            <button type="button" onclick="openBooking('Truck & SUV Package')" class="btn-neon block text-center w-full mt-auto">GET MY QUOTE</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Package 3: Windshield & Visor -->
+      <div class="pkg-shell flex flex-col reveal" style="transition-delay:0.2s;">
+        <div class="pkg flex flex-col flex-1">
+          <div class="overflow-hidden" style="height:200px;">
+            <img src="images/pkg-windshield-visor.jpg" alt="Windshield brow strip and visor tint add-on"
+                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <div class="label text-muted mb-2">Add-On</div>
+            <h3 class="display text-white text-2xl mb-3">WINDSHIELD &amp; VISOR</h3>
+            <p class="font-body font-300 text-muted text-sm leading-relaxed mb-5 flex-1">
+              A 5% windshield brow or full visor strip cuts sun glare on the drive to work — installed in under 40 minutes.
+            </p>
+            <ul class="space-y-2 mb-6 font-body text-xs text-off-white/80">
+              <li class="check">5% windshield brow strip</li>
+              <li class="check">Front visor tint option</li>
+              <li class="check">Pairs with any package above</li>
+            </ul>
+            <button type="button" onclick="openBooking('Windshield & Visor Add-On')" class="btn-ghost block text-center w-full mt-auto">GET MY QUOTE</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Package 4: Specialty / Off-Road -->
+      <div class="pkg-shell flex flex-col reveal" style="transition-delay:0.3s;">
+        <div class="pkg flex flex-col flex-1">
+          <div class="overflow-hidden" style="height:200px;">
+            <img src="images/pkg-specialty.jpg" alt="UTV, Polaris Ranger, and boat window tint package"
+                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+          </div>
+          <div class="p-7 flex flex-col flex-1">
+            <div class="label text-muted mb-2">UTV, Boat &amp; Off-Road</div>
+            <h3 class="display text-white text-2xl mb-3">SPECIALTY VEHICLES</h3>
+            <p class="font-body font-300 text-muted text-sm leading-relaxed mb-5 flex-1">
+              Polaris Rangers, UTVs, boats, motorcycles — most Mid-Michigan shops turn these away. Bill doesn't.
+            </p>
+            <ul class="space-y-2 mb-6 font-body text-xs text-off-white/80">
+              <li class="check">UTVs &amp; side-by-sides</li>
+              <li class="check">Boats &amp; marine glass</li>
+              <li class="check">Quoted after a quick look at your ride</li>
+            </ul>
+            <button type="button" onclick="openBooking('Specialty Vehicle')" class="btn-ghost block text-center w-full mt-auto">GET MY QUOTE</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-10 p-6 reveal" style="background:rgba(57,255,20,0.04); border:1px solid rgba(57,255,20,0.12); border-radius:1rem;">
+      <div class="display text-center text-white text-xl md:text-2xl">
+        EVERY PACKAGE INCLUDES: LIFETIME WARRANTY &middot; AUTOBAHN PERFORMANCE FILM &middot; NO HIDDEN FEES
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     ADD-ON SERVICES
+══════════════════════════════════════ -->
+<section class="w-full py-20 px-4 bg-ink" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <div class="label text-blue mb-3">More Than Just Tint</div>
+      <h2 class="display text-white" style="font-size: clamp(2rem, 5vw, 4rem);">ADDITIONAL SERVICES</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+
+      <div class="addon flex flex-col">
+        <div style="height:170px; overflow:hidden;">
+          <img src="images/addon-removal.jpg" alt="Old window tint removal and reinstallation" class="w-full h-full object-cover">
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="display text-white text-lg mb-2">TINT REMOVAL &amp; REINSTALL</div>
+          <p class="font-body font-300 text-muted text-sm leading-relaxed mb-4 flex-1">
+            Old tint peeling, purpling, or bubbling? Bill strips it clean and reinstalls fresh Autobahn film.
+          </p>
+          <button type="button" onclick="openBooking('Tint Removal & Reinstall')" class="btn-ghost block text-center w-full mt-auto">GET A QUOTE</button>
+        </div>
+      </div>
+
+      <div class="addon flex flex-col">
+        <div style="height:170px; overflow:hidden;">
+          <img src="images/addon-mobile.jpg" alt="Mobile window tint pickup and drop-off service" class="w-full h-full object-cover">
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="display text-white text-lg mb-2">MOBILE PICKUP &amp; DROP-OFF</div>
+          <p class="font-body font-300 text-muted text-sm leading-relaxed mb-4 flex-1">
+            Bill picks your vehicle up at home or work within the City of Midland and brings it back done.
+          </p>
+          <button type="button" onclick="openBooking('Mobile Service')" class="btn-ghost block text-center w-full mt-auto">GET A QUOTE</button>
+        </div>
+      </div>
+
+      <div class="addon flex flex-col">
+        <div style="height:170px; overflow:hidden;">
+          <img src="images/addon-consult.jpg" alt="Free tint shade consultation" class="w-full h-full object-cover">
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="display text-white text-lg mb-2">FREE SHADE CONSULTATION</div>
+          <p class="font-body font-300 text-muted text-sm leading-relaxed mb-4 flex-1">
+            Not sure what percentage is legal or right for your vehicle? Bill walks you through it before you book.
+          </p>
+          <button type="button" onclick="openBooking('Shade Consultation')" class="btn-ghost block text-center w-full mt-auto">GET A QUOTE</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PROCESS
+══════════════════════════════════════ -->
+<section id="process" class="w-full py-24 md:py-32 px-4 bg-carbon scroll-mt-20" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <div class="label text-blue mb-3">How It Works</div>
+      <h2 class="display text-white" style="font-size: clamp(2.6rem, 6.6vw, 5.6rem);">
+        THREE STEPS.<br><span class="neon-text">MOST JOBS SAME DAY.</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+
+      <div class="relative reveal">
+        <div class="overflow-hidden mb-6 rounded-xl" style="height:260px;">
+          <img src="images/process-step1.jpg" alt="Request a fast tint quote" class="w-full h-full object-cover">
+        </div>
+        <div class="relative pl-4">
+          <div class="step-num">01</div>
+          <div class="relative z-10">
+            <div class="label text-neon mb-2">Step One</div>
+            <h3 class="display text-white text-2xl mb-3">TEXT OR CALL BILL</h3>
+            <p class="font-body font-300 text-muted text-sm leading-relaxed">
+              Text (989) 600-7633 or fill out the quote form. Most requests get a real answer within 20 minutes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative reveal" style="transition-delay:0.1s;">
+        <div class="overflow-hidden mb-6 rounded-xl" style="height:260px;">
+          <img src="images/process-step2.jpg" alt="Schedule your window tint appointment" class="w-full h-full object-cover">
+        </div>
+        <div class="relative pl-4">
+          <div class="step-num">02</div>
+          <div class="relative z-10">
+            <div class="label text-neon mb-2">Step Two</div>
+            <h3 class="display text-white text-2xl mb-3">DROP OFF OR SCHEDULE PICKUP</h3>
+            <p class="font-body font-300 text-muted text-sm leading-relaxed">
+              Bring your vehicle to 104 W Union St, downtown Midland — or Bill picks it up from your home or office.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative reveal" style="transition-delay:0.2s;">
+        <div class="overflow-hidden mb-6 rounded-xl" style="height:260px;">
+          <img src="images/process-step3.jpg" alt="Professional window tint installation" class="w-full h-full object-cover">
+        </div>
+        <div class="relative pl-4">
+          <div class="step-num">03</div>
+          <div class="relative z-10">
+            <div class="label text-neon mb-2">Step Three</div>
+            <h3 class="display text-white text-2xl mb-3">BILL INSTALLS IT RIGHT</h3>
+            <p class="font-body font-300 text-muted text-sm leading-relaxed">
+              Most vehicles are done in 1–3 hours. Clean edges, no bubbles, backed by a lifetime warranty.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     GUARANTEE
+══════════════════════════════════════ -->
+<section id="guarantee" class="w-full py-24 md:py-32 px-4 bg-ink scroll-mt-20" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center reveal">
+
+      <div>
+        <div class="label text-muted mb-5">Bill's Standard</div>
+        <h2 class="display text-white mb-8" style="font-size: clamp(2.6rem, 5.6vw, 4.6rem);">
+          IF IT FADES,<br>BUBBLES, OR PEELS —<br><span class="blue-text">HE FIXES IT. FREE.</span>
+        </h2>
+        <p class="font-body font-300 text-muted leading-relaxed mb-5 text-lg">
+          Every Strategic Tint Studio install is backed by a lifetime warranty against fading, discoloring, and adhesive failure. Bill built this business as the only authorized Autobahn dealer in Mid-Michigan — that exclusivity only means something if the work holds up.
+        </p>
+        <p class="font-body font-300 text-muted leading-relaxed mb-10">
+          5.0 stars across 114 Google reviews isn't an accident. It's what happens when someone stands behind every install, every time.
+        </p>
+        <div class="guarantee-wrap flex items-start gap-5 p-6 rounded-xl">
+          <div class="display leading-none" style="font-size:2.5rem; color:#7C79F0;">✓</div>
+          <div>
+            <div class="display text-white text-xl mb-1">LIFETIME WARRANTY</div>
+            <div class="font-body font-300 text-muted text-sm leading-relaxed">
+              Covers fading, discoloring, and adhesive failure — for as long as you own the vehicle. No fine print, no arguing.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <img src="images/guarantee-image.jpg" alt="Precision window tint installation, Midland MI" class="w-full object-cover rounded-xl" style="height:420px;">
+        <div class="neon-rule mt-0"></div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     GALLERY
+══════════════════════════════════════ -->
+<section class="w-full py-20 bg-carbon" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="text-center mb-12 reveal">
+      <div class="label text-blue mb-3">Portfolio</div>
+      <h2 class="display text-white" style="font-size: clamp(2rem, 5vw, 4rem);">THE WORK SPEAKS</h2>
+    </div>
+
+    <div class="gallery-item reveal mb-2">
+      <img src="images/gallery-showcase.jpg" alt="Freshly tinted vehicle, studio shot" class="w-full object-cover" style="height:420px; object-position: center 25%;">
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 reveal">
+      <div class="gallery-item col-span-2"><img src="images/gallery-truck.jpg" alt="Truck window tint install" class="w-full object-cover" style="height:240px;"></div>
+      <div class="gallery-item"><img src="images/gallery-utv.jpg" alt="Polaris Ranger UTV window tint" class="w-full object-cover" style="height:240px;"></div>
+      <div class="gallery-item"><img src="images/gallery-shop.jpg" alt="Strategic Tint Studio shop, downtown Midland" class="w-full object-cover" style="height:240px;"></div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-2 mt-2 reveal">
+      <div class="gallery-item"><img src="images/gallery-sedan.jpg" alt="Sedan tint detail" class="w-full object-cover" style="height:160px;"></div>
+      <div class="gallery-item"><img src="images/gallery-process.jpg" alt="Window tint install process" class="w-full object-cover" style="height:160px;"></div>
+      <div class="gallery-item"><img src="images/gallery-windshield.jpg" alt="Windshield brow strip detail" class="w-full object-cover" style="height:160px;"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     REVIEWS — MARQUEE (real Google reviews)
+══════════════════════════════════════ -->
+<section class="w-full py-20 bg-ink" style="border-top:1px solid rgba(255,255,255,0.04);">
+
+  <div class="text-center mb-12 reveal px-4">
+    <div class="label text-neon mb-3">What Clients Say</div>
+    <h2 class="display text-white" style="font-size: clamp(2rem, 5vw, 4rem);">
+      114 REVIEWS.<br><span class="blue-text">ONE OWNER DOING THE WORK.</span>
+    </h2>
+  </div>
+
+  <div class="marquee-viewport">
+    <div class="marquee-track" id="marquee-reviews">
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Bill was absolutely fantastic! He suggested the right choice of tint, then did an awesome job. Super professional and very kind."</div><div class="review-author">Marco Giavoni</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"This is the place you need to go. Very easy to schedule. Quality work I'm proud to show off! I recommend Strategic Tint Studio 100%."</div><div class="review-author">Jason Mallow</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Extremely easy to work with when scheduling. We had a car AND our Polaris Ranger tinted and are very happy with the results."</div><div class="review-author">Jill Boudreau</div><div class="review-source">Google Review &middot; Local Guide &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Great service, fair pricing and good work. Removed my old tint and reinstalled new for me. Looks great!"</div><div class="review-author">Robert Vincent</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"It 100% looks like factory tinted glass — you can't even see the edges or trim points. If you're on the fence, DO IT."</div><div class="review-author">Gromin With Rob</div><div class="review-source">Google Review &middot; Local Guide &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Fast job, like 3 hours, and it looks perfect. Pricing is very fair for the work. The warranty is also a very nice additive."</div><div class="review-author">Luke</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Bill did an excellent job on my 5% windshield brow. Quote, payment, and service were smooth and professional. Install was under 40 minutes."</div><div class="review-author">R Prange</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"My tint had faded and bubbled from another installer. After this service, the appearance 100% improved. Love the lifetime warranty."</div><div class="review-author">BeTheEncourager</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Best customer service I've experienced with any business. Most shops told me no or gave an outrageous quote — Strategic said yes."</div><div class="review-author">Steve</div><div class="review-source">Google Review &middot; Local Guide &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"First time getting windows tinted. Bill picked up my car at work, updated me during the process, and brought it back looking beautiful."</div><div class="review-author">Nicole Stover</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <!-- duplicate set for seamless loop -->
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Bill was absolutely fantastic! He suggested the right choice of tint, then did an awesome job. Super professional and very kind."</div><div class="review-author">Marco Giavoni</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"This is the place you need to go. Very easy to schedule. Quality work I'm proud to show off! I recommend Strategic Tint Studio 100%."</div><div class="review-author">Jason Mallow</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Extremely easy to work with when scheduling. We had a car AND our Polaris Ranger tinted and are very happy with the results."</div><div class="review-author">Jill Boudreau</div><div class="review-source">Google Review &middot; Local Guide &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Great service, fair pricing and good work. Removed my old tint and reinstalled new for me. Looks great!"</div><div class="review-author">Robert Vincent</div><div class="review-source">Google Review &middot; Midland, MI</div></div>
+
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"It 100% looks like factory tinted glass — you can't even see the edges or trim points. If you're on the fence, DO IT."</div><div class="review-author">Gromin With Rob</div><div class="review-source">Google Review &middot; Local Guide &middot; Midland, MI</div></div>
+
+    </div>
+  </div>
+
+  <div class="text-center mt-10 reveal px-4">
+    <div class="inline-flex items-center gap-3 px-6 py-3 mb-5 rounded-full" style="background:rgba(57,255,20,0.06); border:1px solid rgba(57,255,20,0.16);">
+      <span class="display text-neon text-2xl">5.0</span>
+      <span class="display text-white text-xl">★★★★★</span>
+      <span class="label text-muted" style="font-size:0.62rem;">on Google &middot; 114 Reviews</span>
+    </div>
+    <br>
+    <a href="https://www.google.com/search?q=Strategic+Tint+Studio+Midland+MI+reviews"
+       target="_blank" rel="noopener"
+       style="display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(57,255,20,0.35); color:#7CFF5C;
+              font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.14em;
+              text-transform:uppercase; padding:13px 28px; text-decoration:none; border-radius:999px;
+              transition:border-color 0.28s, background 0.28s;"
+       onmouseover="this.style.borderColor='#39FF14'; this.style.background='rgba(57,255,20,0.07)'"
+       onmouseout="this.style.borderColor='rgba(57,255,20,0.35)'; this.style.background='transparent'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Leave Us a Review
+    </a>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<section class="w-full py-36 md:py-48 relative overflow-hidden cta-bg">
+  <div class="absolute inset-0 cta-scrim"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6 md:px-10 reveal">
+    <div class="label text-neon mb-5">Ready?</div>
+    <h2 class="display text-white mb-6" style="font-size: clamp(3rem, 9vw, 7.5rem); max-width: 750px;">
+      BOOK YOUR<br><span class="neon-text">TINT.</span>
+    </h2>
+    <p class="font-body font-300 text-off-white/70 text-xl mb-10 max-w-lg leading-relaxed">
+      Text Bill at (989) 600-7633 or fill out the form. Most quotes get a real answer within 20 minutes.
+    </p>
+    <button type="button" onclick="openBooking()" class="btn-neon text-base px-14 py-5">Get a Free Quote</button>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER / CONTACT
+══════════════════════════════════════ -->
+<footer id="contact" class="w-full bg-ink pt-20 pb-10 px-4" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+
+      <div>
+        <div class="mb-6">
+          <img src="images/logo.png" alt="Strategic Tint Studio" style="height:100px; width:auto; display:block;">
+        </div>
+        <p class="font-body font-300 text-muted text-sm leading-relaxed max-w-xs">
+          Mid-Michigan's only authorized Autobahn Performance Film dealer. Downtown Midland, MI — serving Midland, Saginaw, Bay City, Mt. Pleasant &amp; surrounding areas.
+        </p>
+        <div class="flex gap-5 mt-6">
+          <a href="https://www.facebook.com/StrategicTintStudio" target="_blank" rel="noopener"
+             style="color:rgba(110,114,116,0.9); transition:color 0.25s;"
+             onmouseover="this.style.color='#39FF14'" onmouseout="this.style.color='rgba(110,114,116,0.9)'" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@strategictintstudio" target="_blank" rel="noopener"
+             style="color:rgba(110,114,116,0.9); transition:color 0.25s;"
+             onmouseover="this.style.color='#39FF14'" onmouseout="this.style.color='rgba(110,114,116,0.9)'" aria-label="TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2c.3 2.1 1.7 3.7 3.9 4v2.9c-1.4.1-2.7-.3-3.9-1.1v6.6c0 3.3-2.7 6-6 6-1.4 0-2.7-.5-3.7-1.3a6 6 0 0 1 6.6-9.5v3a3 3 0 1 0 2.1 2.9V2h1z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="label text-neon mb-5">Navigate</div>
+        <ul class="space-y-3 font-body font-300 text-sm">
+          <li><a href="#packages"  class="text-muted hover:text-white transition-colors">Packages</a></li>
+          <li><a href="#process"   class="text-muted hover:text-white transition-colors">How It Works</a></li>
+          <li><a href="#guarantee" class="text-muted hover:text-white transition-colors">Warranty</a></li>
+          <li><a href="#proof"     class="text-muted hover:text-white transition-colors">See Results</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="label text-neon mb-5">Get in Touch</div>
+        <div class="space-y-3 font-body font-300 text-sm text-muted">
+          <div><a href="tel:+19896007633" class="hover:text-white transition-colors">📞 (989) 600-7633</a></div>
+          <div>📍 104 W Union St, Midland, MI 48640</div>
+          <div>🕐 Mon–Fri, 9AM–5PM</div>
+          <div>📞 Text to book: <a href="sms:+19896007633" class="hover:text-white transition-colors">(989) 600-7633</a></div>
+        </div>
+        <div class="mt-6">
+          <button type="button" onclick="openBooking()" class="btn-neon text-sm">Get a Free Quote</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="neon-rule mb-8"></div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-3 font-body font-300 text-xs text-muted">
+      <div>© 2026 Strategic Tint Studio. All rights reserved.</div>
+      <div>Website design by <a href="https://brechtland.com/#contact" target="_blank" rel="noopener" class="text-neon" style="text-decoration:none;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Brechtland</a></div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════ -->
+<script>
+  function initMarquee(trackId, pxPerSecond) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    let pos = 0, last = null, paused = false;
+    const vp = track.closest('.marquee-viewport');
+    if (vp) {
+      vp.addEventListener('mouseenter', () => { paused = true; });
+      vp.addEventListener('mouseleave', () => { paused = false; last = null; });
+    }
+    function step(ts) {
+      if (!paused) {
+        if (last !== null) {
+          const dt = Math.min(ts - last, 50);
+          const halfW = track.scrollWidth / 2;
+          pos += (pxPerSecond * dt) / 1000;
+          if (pos >= halfW) pos -= halfW;
+          track.style.transform = 'translateX(-' + pos + 'px)';
+        }
+        last = ts;
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener('load', function() {
+    initMarquee('marquee-stats',   38);
+    initMarquee('marquee-reviews', 26);
+
+    (function() {
+      var pos = 0, last = null, pctPerSec = 7;
+      var els = document.querySelectorAll('.neon-text, .blue-text, .btn-neon');
+      function tick(ts) {
+        if (last !== null) {
+          var dt = Math.min(ts - last, 50);
+          pos = (pos + (pctPerSec * dt) / 1000) % 100;
+          for (var i = 0; i < els.length; i++) els[i].style.backgroundPosition = pos + '% ' + pos + '%';
+        }
+        last = ts;
+        requestAnimationFrame(tick);
+      }
+      if (els.length) requestAnimationFrame(tick);
+    })();
+
+    var bar  = document.getElementById('sticky-bar');
+    var hero = document.getElementById('home');
+    if (bar && hero) {
+      function checkSticky() {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        bar.style.transform = scrollY >= hero.offsetHeight * 0.85 ? 'translateY(0)' : 'translateY(100%)';
+      }
+      window.addEventListener('scroll',     checkSticky, { passive: true });
+      document.addEventListener('touchmove', checkSticky, { passive: true });
+      document.addEventListener('touchend',  checkSticky, { passive: true });
+      checkSticky();
+    }
+  });
+
+  const nav = document.getElementById('nav');
+  const navInner = document.getElementById('nav-inner');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navInner.style.paddingTop = '10px'; navInner.style.paddingBottom = '10px';
+      nav.style.background = 'rgba(7,8,10,0.98)';
+    } else {
+      navInner.style.paddingTop = '16px'; navInner.style.paddingBottom = '16px';
+      nav.style.background = '';
+    }
+  }, { passive: true });
+
+  const mobBtn = document.getElementById('mob-btn');
+  const mobMenu = document.getElementById('mob-menu');
+  const icOpen = document.getElementById('ic-open');
+  const icClose = document.getElementById('ic-close');
+  let menuOpen = false;
+
+  mobBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobMenu.style.opacity = menuOpen ? '1' : '0';
+    mobMenu.style.pointerEvents = menuOpen ? 'all' : 'none';
+    icOpen.classList.toggle('hidden', menuOpen);
+    icClose.classList.toggle('hidden', !menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobMenu.style.opacity = '0';
+      mobMenu.style.pointerEvents = 'none';
+      icOpen.classList.remove('hidden');
+      icClose.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  });
+
+  (function() {
+    const wrap = document.getElementById('ba-wrap');
+    const overlay = document.getElementById('ba-overlay');
+    const handle = document.getElementById('ba-handle');
+    const hint = document.getElementById('ba-hint');
+    const overlayImg = overlay ? overlay.querySelector('img') : null;
+    if (!wrap || !overlayImg) return;
+
+    let dragging = false;
+    function move(clientX) {
+      const rect = wrap.getBoundingClientRect();
+      let p = ((clientX - rect.left) / rect.width) * 100;
+      p = Math.max(0.5, Math.min(99.5, p));
+      overlayImg.style.clipPath = 'inset(0 ' + (100 - p).toFixed(2) + '% 0 0)';
+      handle.style.left = p + '%';
+      if (hint) hint.style.opacity = '0';
+    }
+    move(wrap.getBoundingClientRect().left + wrap.offsetWidth * 0.5);
+
+    wrap.addEventListener('mousedown', e => { dragging = true; move(e.clientX); e.preventDefault(); });
+    window.addEventListener('mousemove', e => { if (dragging) move(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+
+    wrap.addEventListener('touchstart', e => { dragging = true; move(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', e => { if (dragging) move(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { dragging = false; });
+  })();
+
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => ro.observe(el));
+
+  function openBooking(service) {
+    var modal = document.getElementById('booking-modal');
+    var formState = document.getElementById('booking-form-state');
+    var successState = document.getElementById('booking-success');
+    var bar = document.getElementById('sticky-bar');
+    formState.style.display = 'block';
+    successState.style.display = 'none';
+    if (service) {
+      var sel = document.getElementById('b-service');
+      if (sel) sel.value = service;
+    }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    if (bar) bar.style.transform = 'translateY(100%)';
+  }
+
+  function closeBooking() {
+    document.getElementById('booking-modal').style.display = 'none';
+    document.body.style.overflow = '';
+    var bar = document.getElementById('sticky-bar');
+    var hero = document.getElementById('home');
+    if (bar && hero) {
+      bar.style.transform = hero.getBoundingClientRect().bottom <= 0 ? 'translateY(0)' : 'translateY(100%)';
+    }
+  }
+
+  function submitBooking(e) {
+    e.preventDefault();
+    var formData = {
+      name:    document.getElementById('b-name').value,
+      phone:   document.getElementById('b-phone').value,
+      email:   document.getElementById('b-email').value,
+      service: document.getElementById('b-service').value,
+      vehicle: document.getElementById('b-vehicle').value,
+      message: document.getElementById('b-message').value
+    };
+    fetch('https://formspree.io/bill@strategictintstudio.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(formData)
+    }).catch(function(err) { console.log('Form error:', err); });
+
+    document.getElementById('booking-form-state').style.display = 'none';
+    document.getElementById('booking-success').style.display = 'block';
+  }
+
+  document.getElementById('booking-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeBooking();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeBooking();
+  });
+</script>
+
+
+<!-- ══════════════════════════════════════
+     MOBILE STICKY BAR
+══════════════════════════════════════ -->
+<div id="sticky-bar"
+     style="position:fixed; bottom:0; left:0; right:0; z-index:8000;
+            background:rgba(7,8,10,0.97); border-top:1px solid rgba(57,255,20,0.22);
+            backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+            padding:12px 20px; align-items:center; justify-content:space-between; gap:12px;
+            transform:translateY(100%); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);">
+
+  <div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:0.95rem; letter-spacing:0.06em; text-transform:uppercase; color:#F1F3EF; line-height:1.1;">
+      Strategic Tint Studio
+    </div>
+    <div style="font-family:'Barlow',sans-serif; font-weight:300; font-size:0.72rem; color:rgba(255,255,255,0.38); margin-top:2px;">
+      Only Autobahn Dealer &middot; Midland, MI
+    </div>
+  </div>
+
+  <button type="button" onclick="openBooking()"
+          style="flex-shrink:0; background:#39FF14; color:#07080A; font-family:'Barlow Condensed',sans-serif;
+                 font-weight:800; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;
+                 padding:11px 24px; border:none; border-radius:999px; cursor:pointer;
+                 transition:background 0.25s, transform 0.2s; white-space:nowrap;"
+          onmouseover="this.style.background='#7CFF5C'" onmouseout="this.style.background='#39FF14'">
+    Get a Free Quote
+  </button>
+
+</div>
+
+
+<!-- ══════════════════════════════════════
+     BOOKING MODAL
+══════════════════════════════════════ -->
+<div id="booking-modal" aria-modal="true" role="dialog"
+     style="display:none; position:fixed; inset:0; z-index:9000;
+            background:rgba(7,8,10,0.94); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+            align-items:center; justify-content:center; padding:16px; overflow-y:auto;">
+
+  <div id="booking-card"
+       style="position:relative; width:100%; max-width:520px; margin:auto;
+              background:linear-gradient(160deg, rgba(22,24,25,0.99) 0%, rgba(10,11,12,1) 100%);
+              border:1px solid rgba(57,255,20,0.22); border-radius:1.5rem; padding:40px 36px;">
+
+    <button onclick="closeBooking()" aria-label="Close"
+            style="position:absolute; top:16px; right:18px; background:none; border:none;
+                   color:rgba(255,255,255,0.3); cursor:pointer; font-size:1.3rem; line-height:1; padding:4px 8px; transition:color 0.2s;"
+            onmouseover="this.style.color='#39FF14'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">✕</button>
+
+    <div id="booking-form-state">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:#39FF14; margin-bottom:8px;">
+        Strategic Tint Studio &middot; Midland, MI
+      </div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif; font-weight:900; text-transform:uppercase; line-height:0.95; font-size:clamp(1.9rem,5vw,2.7rem); color:#F1F3EF; margin-bottom:10px;">
+        GET A FREE QUOTE
+      </h2>
+      <p style="font-family:'Barlow',sans-serif; font-weight:300; font-size:0.875rem; color:rgba(241,243,239,0.5); margin-bottom:28px; line-height:1.65;">
+        Fill this out and Bill will reach out — most quotes get a real answer within 20 minutes.
+      </p>
+
+      <form id="booking-form" onsubmit="submitBooking(event)">
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+          <div>
+            <label style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:6px;">Full Name *</label>
+            <input type="text" id="b-name" required placeholder="Jane Smith"
+                   style="width:100%; background:#16181A; border:1px solid rgba(255,255,255,0.08); color:#F1F3EF; font-family:'Barlow',sans-serif; font-size:0.875rem; padding:10px 13px; outline:none; border-radius:0.5rem; transition:border-color 0.2s;"
+                   onfocus="this.style.borderColor='rgba(57,255,20,0.55)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+          <div>
+            <label style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:6px;">Phone *</label>
+            <input type="tel" id="b-phone" required placeholder="(989) 555-0100"
+                   style="width:100%; background:#16181A; border:1px solid rgba(255,255,255,0.08); color:#F1F3EF; font-family:'Barlow',sans-serif; font-size:0.875rem; padding:10px 13px; outline:none; border-radius:0.5rem; transition:border-color 0.2s;"
+                   onfocus="this.style.borderColor='rgba(57,255,20,0.55)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+          </div>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:6px;">Email</label>
+          <input type="email" id="b-email" placeholder="jane@email.com"
+                 style="width:100%; background:#16181A; border:1px solid rgba(255,255,255,0.08); color:#F1F3EF; font-family:'Barlow',sans-serif; font-size:0.875rem; padding:10px 13px; outline:none; border-radius:0.5rem; transition:border-color 0.2s;"
+                 onfocus="this.style.borderColor='rgba(57,255,20,0.55)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+        </div>
+
+        <div style="margin-bottom:12px; position:relative;">
+          <label style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:6px;">Package Interest</label>
+          <select id="b-service"
+                  style="width:100%; background:#16181A; border:1px solid rgba(255,255,255,0.08); color:#F1F3EF; font-family:'Barlow',sans-serif; font-size:0.875rem; padding:10px 13px; outline:none; border-radius:0.5rem; cursor:pointer; -webkit-appearance:none; appearance:none; transition:border-color 0.2s;"
+                  onfocus="this.style.borderColor='rgba(57,255,20,0.55)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <option value="">Not sure — just need a quote</option>
+            <option value="Daily Driver — Sedan/Coupe">Daily Driver (Sedan/Coupe)</option>
+            <option value="Truck & SUV Package">Truck &amp; SUV Package</option>
+            <option value="Windshield & Visor Add-On">Windshield &amp; Visor Add-On</option>
+            <option value="Specialty Vehicle">Specialty (UTV/Boat/Motorcycle)</option>
+            <option value="Tint Removal & Reinstall">Tint Removal &amp; Reinstall</option>
+            <option value="Mobile Service">Mobile Pickup/Drop-Off</option>
+          </select>
+          <div style="pointer-events:none; position:absolute; right:13px; bottom:11px; color:rgba(57,255,20,0.6); font-size:0.75rem;">▼</div>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:6px;">Vehicle (Year / Make / Model)</label>
+          <input type="text" id="b-vehicle" placeholder="e.g. 2023 Ford F-150"
+                 style="width:100%; background:#16181A; border:1px solid rgba(255,255,255,0.08); color:#F1F3EF; font-family:'Barlow',sans-serif; font-size:0.875rem; padding:10px 13px; outline:none; border-radius:0.5rem; transition:border-color 0.2s;"
+                 onfocus="this.style.borderColor='rgba(57,255,20,0.55)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <label style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:6px;">Anything Else?</label>
+          <textarea id="b-message" rows="3" placeholder="Shade preference, best time to reach you, etc."
+                    style="width:100%; background:#16181A; border:1px solid rgba(255,255,255,0.08); color:#F1F3EF; font-family:'Barlow',sans-serif; font-size:0.875rem; padding:10px 13px; outline:none; resize:vertical; border-radius:0.5rem; transition:border-color 0.2s;"
+                    onfocus="this.style.borderColor='rgba(57,255,20,0.55)'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'"></textarea>
+        </div>
+
+        <button type="submit"
+                style="width:100%; text-align:center; display:block; background:#39FF14; color:#07080A;
+                       font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:0.88rem; letter-spacing:0.12em;
+                       text-transform:uppercase; padding:16px 36px; border:none; border-radius:999px; cursor:pointer;
+                       transition:background 0.28s ease, transform 0.25s ease;"
+                onmouseover="this.style.background='#7CFF5C'; this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.background='#39FF14'; this.style.transform='translateY(0)'">
+          Send My Request
+        </button>
+
+        <p style="font-family:'Barlow',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.22); text-align:center; margin-top:14px;">
+          Prefer to text? <a href="sms:+19896007633" style="color:rgba(57,255,20,0.65); text-decoration:none;">(989) 600-7633</a>
+        </p>
+      </form>
+    </div>
+
+    <div id="booking-success" style="display:none; text-align:center; padding:24px 0;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:3.5rem; color:#39FF14; margin-bottom:16px;">✓</div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(1.7rem,4vw,2.3rem); color:#F1F3EF; margin-bottom:14px;">
+        REQUEST SENT
+      </h2>
+      <p style="font-family:'Barlow',sans-serif; font-weight:300; font-size:0.9rem; color:rgba(241,243,239,0.55); line-height:1.75; margin-bottom:28px;">
+        Bill will reach out to confirm your appointment shortly.<br>
+        Look out for a call or text from <strong style="color:#39FF14;">(989) 600-7633</strong>.
+      </p>
+      <button onclick="closeBooking()"
+              style="display:inline-block; background:#39FF14; color:#07080A; font-family:'Barlow Condensed',sans-serif;
+                     font-weight:800; font-size:0.88rem; letter-spacing:0.12em; text-transform:uppercase; padding:14px 40px;
+                     border:none; border-radius:999px; cursor:pointer; transition:background 0.25s;"
+              onmouseover="this.style.background='#7CFF5C'" onmouseout="this.style.background='#39FF14'">Done</button>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
