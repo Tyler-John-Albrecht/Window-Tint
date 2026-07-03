@@ -79,6 +79,13 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .blue-text {
+      background: linear-gradient(-45deg, #4F46E5, #7C79F0, #4F46E5, #7C79F0);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .red-text { color: #FF3B3F; }
 
     .neon-rule { height: 1px; background: linear-gradient(90deg, transparent 0%, #39FF14 50%, transparent 100%); }
@@ -114,6 +121,7 @@
     .stat-pill { display: flex; align-items: center; gap: 14px; padding: 0 48px; white-space: nowrap; }
     .stat-pill-divider { width: 5px; height: 5px; border-radius: 50%; background: rgba(57,255,20,0.4); flex-shrink: 0; }
     .stat-pill .display { text-shadow: 0 0 18px rgba(57,255,20,0.45); }
+    .stat-pill .display.text-brandblue { text-shadow: 0 0 18px rgba(79,70,229,0.5); }
 
     /* Before/After slider */
     .slider-wrap { position: relative; overflow: hidden; cursor: col-resize; user-select: none; -webkit-user-select: none; touch-action: pan-y; }
@@ -152,7 +160,7 @@
       padding: 6px;
       transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.45s ease;
     }
-    .pkg-shell:hover { transform: translateY(-8px); border-color: rgba(57,255,20,0.35); box-shadow: 0 30px 60px -18px rgba(0,0,0,0.7), 0 0 40px rgba(57,255,20,0.08); }
+    .pkg-shell:hover { transform: translateY(-8px); border-color: rgba(79,70,229,0.4); box-shadow: 0 30px 60px -18px rgba(0,0,0,0.7), 0 0 40px rgba(79,70,229,0.1); }
     .pkg {
       background: linear-gradient(160deg, rgba(22,24,25,0.94) 0%, rgba(10,11,12,0.99) 100%);
       border: 1px solid rgba(255,255,255,0.05);
@@ -170,14 +178,14 @@
       background: rgba(15,16,17,0.96); border: 1px solid rgba(255,255,255,0.05); border-radius: 1.25rem; overflow: hidden;
       transition: border-color 0.35s ease, transform 0.35s ease;
     }
-    .addon:hover { border-color: rgba(57,255,20,0.28); transform: translateY(-5px); }
+    .addon:hover { border-color: rgba(79,70,229,0.35); transform: translateY(-5px); }
 
     .step-num {
       font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 6rem; line-height: 1;
       color: rgba(57,255,20,0.1); position: absolute; top: 0; left: -4px; pointer-events: none;
     }
 
-    .guarantee-wrap { background: linear-gradient(135deg, rgba(57,255,20,0.05) 0%, rgba(7,8,10,0) 60%); border: 1px solid rgba(57,255,20,0.14); }
+    .guarantee-wrap { background: linear-gradient(135deg, rgba(79,70,229,0.07) 0%, rgba(7,8,10,0) 60%); border: 1px solid rgba(79,70,229,0.18); }
 
     .gallery-item { overflow: hidden; border-radius: 0.75rem; }
     .gallery-item img { transition: transform 0.6s ease, filter 0.4s ease; filter: brightness(0.88); }
@@ -210,7 +218,7 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #07080A; }
     ::-webkit-scrollbar-thumb { background: #24262A; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #39FF14; }
+    ::-webkit-scrollbar-thumb:hover { background: #7C79F0; }
 
     .review-card {
       width: 300px; flex-shrink: 0; margin: 0 14px;
@@ -225,8 +233,8 @@
     .review-source { font-family: "Barlow", sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.25); margin-top: 2px; }
 
     footer a svg { transition: filter 0.25s ease; }
-    footer a:hover svg { filter: drop-shadow(0 0 7px rgba(57,255,20,0.8)); }
-    nav a:not([class*="btn"]):hover { text-shadow: 0 0 14px rgba(57,255,20,0.45); }
+    footer a:hover svg { filter: drop-shadow(0 0 7px rgba(79,70,229,0.85)); }
+    nav a:not([class*="btn"]):hover { text-shadow: 0 0 14px rgba(79,70,229,0.55); }
 
     @media (max-width: 768px) {
       #home > div[style*="linear-gradient"] {
@@ -264,7 +272,7 @@
   <div class="max-w-7xl mx-auto px-6 md:px-10 py-4 flex items-center justify-between" id="nav-inner">
 
     <a href="#home" style="text-decoration:none; display:inline-flex; align-items:center;">
-      <img src="images/logo.png" alt="Strategic Tint Studio" class="h-16 md:h-24" style="width:auto; display:block;">
+      <img src="images/logo.png" alt="Strategic Tint Studio" class="h-20 md:h-32" style="width:auto; display:block;">
     </a>
 
     <div class="hidden md:flex items-center gap-8 text-sm">
@@ -302,7 +310,7 @@
   <div class="absolute inset-0 pointer-events-none"
        style="background:linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.42) 48%, transparent 75%); z-index:1;"></div>
 
-  <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[130px] pointer-events-none" style="background:rgba(57,255,20,0.06);"></div>
+  <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[130px] pointer-events-none" style="background:rgba(79,70,229,0.09);"></div>
   <div class="absolute top-1/3 right-1/4 w-[300px] h-[300px] rounded-full blur-[110px] pointer-events-none" style="background:rgba(255,59,63,0.05);"></div>
 
   <div class="flex-1" style="min-height:6rem;"></div>
@@ -334,7 +342,10 @@
 
     <div class="flex flex-col sm:flex-row flex-wrap gap-4">
       <button type="button" onclick="openBooking()" class="btn-neon w-full sm:w-auto text-center">Get a Free Quote</button>
-      <a href="#proof" class="btn-ghost w-full sm:w-auto text-center">See Before &amp; Afters</a>
+      <a href="#proof" class="w-full sm:w-auto text-center"
+         style="display:inline-block; border:1px solid rgba(79,70,229,0.5); color:#7C79F0; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.12em; text-transform:uppercase; padding:14px 36px; border-radius:999px; transition:border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s ease; text-decoration:none;"
+         onmouseover="this.style.borderColor='#4F46E5'; this.style.background='rgba(79,70,229,0.09)'; this.style.boxShadow='0 0 22px rgba(79,70,229,0.3)'"
+         onmouseout="this.style.borderColor='rgba(79,70,229,0.5)'; this.style.background='transparent'; this.style.boxShadow='none'">See Before &amp; Afters</a>
     </div>
   </div>
 
@@ -342,17 +353,17 @@
   <div class="marquee-viewport">
     <div class="marquee-track" id="marquee-stats">
 
-      <div class="stat-pill"><div class="display text-3xl text-neon">5.0 ★</div><div class="label text-muted" style="font-size:0.62rem;">Google Rating &middot; 114 Reviews</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">5.0 ★</div><div class="label text-muted" style="font-size:0.62rem;">Google Rating &middot; 114 Reviews</div><div class="stat-pill-divider"></div></div>
       <div class="stat-pill"><div class="display text-3xl text-neon">ONLY DEALER</div><div class="label text-muted" style="font-size:0.62rem;">Autobahn Performance Films &middot; Mid-Michigan</div><div class="stat-pill-divider"></div></div>
-      <div class="stat-pill"><div class="display text-3xl text-neon">LIFETIME</div><div class="label text-muted" style="font-size:0.62rem;">Warranty on Every Install</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">LIFETIME</div><div class="label text-muted" style="font-size:0.62rem;">Warranty on Every Install</div><div class="stat-pill-divider"></div></div>
       <div class="stat-pill"><div class="display text-3xl text-neon">WE COME TO YOU</div><div class="label text-muted" style="font-size:0.62rem;">Mobile Pickup &amp; Drop-Off</div><div class="stat-pill-divider"></div></div>
-      <div class="stat-pill"><div class="display text-3xl text-neon">AUTO &middot; TRUCK &middot; UTV</div><div class="label text-muted" style="font-size:0.62rem;">Cars, Trucks, SUVs, Off-Road &amp; More</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">AUTO &middot; TRUCK &middot; UTV</div><div class="label text-muted" style="font-size:0.62rem;">Cars, Trucks, SUVs, Off-Road &amp; More</div><div class="stat-pill-divider"></div></div>
 
-      <div class="stat-pill"><div class="display text-3xl text-neon">5.0 ★</div><div class="label text-muted" style="font-size:0.62rem;">Google Rating &middot; 114 Reviews</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">5.0 ★</div><div class="label text-muted" style="font-size:0.62rem;">Google Rating &middot; 114 Reviews</div><div class="stat-pill-divider"></div></div>
       <div class="stat-pill"><div class="display text-3xl text-neon">ONLY DEALER</div><div class="label text-muted" style="font-size:0.62rem;">Autobahn Performance Films &middot; Mid-Michigan</div><div class="stat-pill-divider"></div></div>
-      <div class="stat-pill"><div class="display text-3xl text-neon">LIFETIME</div><div class="label text-muted" style="font-size:0.62rem;">Warranty on Every Install</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">LIFETIME</div><div class="label text-muted" style="font-size:0.62rem;">Warranty on Every Install</div><div class="stat-pill-divider"></div></div>
       <div class="stat-pill"><div class="display text-3xl text-neon">WE COME TO YOU</div><div class="label text-muted" style="font-size:0.62rem;">Mobile Pickup &amp; Drop-Off</div><div class="stat-pill-divider"></div></div>
-      <div class="stat-pill"><div class="display text-3xl text-neon">AUTO &middot; TRUCK &middot; UTV</div><div class="label text-muted" style="font-size:0.62rem;">Cars, Trucks, SUVs, Off-Road &amp; More</div><div class="stat-pill-divider"></div></div>
+      <div class="stat-pill"><div class="display text-3xl text-brandblue">AUTO &middot; TRUCK &middot; UTV</div><div class="label text-muted" style="font-size:0.62rem;">Cars, Trucks, SUVs, Off-Road &amp; More</div><div class="stat-pill-divider"></div></div>
 
     </div>
   </div>
@@ -369,7 +380,7 @@
     <div class="text-center mb-14 reveal">
       <div class="label text-neon mb-3">Results Don't Lie</div>
       <h2 class="display text-white" style="font-size: clamp(2.6rem, 6.6vw, 5.6rem);">
-        FACTORY GLASS.<br><span class="neon-text">NOT AFTERMARKET-LOOKING.</span>
+        FACTORY GLASS.<br><span class="blue-text">NOT AFTERMARKET-LOOKING.</span>
       </h2>
       <p class="font-body font-300 text-muted mt-5 max-w-lg mx-auto text-lg leading-relaxed">
         Real customer words: "It 100% looks like factory tinted glass — you can't even see the edges or trim points." That's the Bill difference.
@@ -410,7 +421,7 @@
         </p>
       </div>
       <div class="bg-ink p-8 text-center" style="border-left:1px solid rgba(255,255,255,0.04); border-right:1px solid rgba(255,255,255,0.04);">
-        <div class="label text-neon mb-3">Precision Install</div>
+        <div class="label text-blue mb-3">Precision Install</div>
         <div class="display text-white text-2xl mb-3">FACTORY-CLEAN EDGES</div>
         <p class="font-body font-300 text-muted text-sm leading-relaxed">
           No visible trim lines, no bubbling at the corners. Most vehicles are done in under 3 hours.
@@ -559,7 +570,7 @@
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center mb-12 reveal">
-      <div class="label text-neon mb-3">More Than Just Tint</div>
+      <div class="label text-blue mb-3">More Than Just Tint</div>
       <h2 class="display text-white" style="font-size: clamp(2rem, 5vw, 4rem);">ADDITIONAL SERVICES</h2>
     </div>
 
@@ -688,7 +699,7 @@
       <div>
         <div class="label text-muted mb-5">Bill's Standard</div>
         <h2 class="display text-white mb-8" style="font-size: clamp(2.6rem, 5.6vw, 4.6rem);">
-          IF IT FADES,<br>BUBBLES, OR PEELS —<br><span class="neon-text">HE FIXES IT. FREE.</span>
+          IF IT FADES,<br>BUBBLES, OR PEELS —<br><span class="blue-text">HE FIXES IT. FREE.</span>
         </h2>
         <p class="font-body font-300 text-muted leading-relaxed mb-5 text-lg">
           Every Strategic Tint Studio install is backed by a lifetime warranty against fading, discoloring, and adhesive failure. Bill built this business as the only authorized Autobahn dealer in Mid-Michigan — that exclusivity only means something if the work holds up.
@@ -697,7 +708,7 @@
           5.0 stars across 114 Google reviews isn't an accident. It's what happens when someone stands behind every install, every time.
         </p>
         <div class="guarantee-wrap flex items-start gap-5 p-6 rounded-xl">
-          <div class="display text-neon leading-none" style="font-size:2.5rem;">✓</div>
+          <div class="display leading-none" style="font-size:2.5rem; color:#7C79F0;">✓</div>
           <div>
             <div class="display text-white text-xl mb-1">LIFETIME WARRANTY</div>
             <div class="font-body font-300 text-muted text-sm leading-relaxed">
@@ -756,7 +767,7 @@
   <div class="text-center mb-12 reveal px-4">
     <div class="label text-neon mb-3">What Clients Say</div>
     <h2 class="display text-white" style="font-size: clamp(2rem, 5vw, 4rem);">
-      114 REVIEWS.<br><span class="neon-text">ONE OWNER DOING THE WORK.</span>
+      114 REVIEWS.<br><span class="blue-text">ONE OWNER DOING THE WORK.</span>
     </h2>
   </div>
 
@@ -942,7 +953,7 @@
 
     (function() {
       var pos = 0, last = null, pctPerSec = 7;
-      var els = document.querySelectorAll('.neon-text, .btn-neon');
+      var els = document.querySelectorAll('.neon-text, .blue-text, .btn-neon');
       function tick(ts) {
         if (last !== null) {
           var dt = Math.min(ts - last, 50);
